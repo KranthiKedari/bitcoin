@@ -1,0 +1,65 @@
+{
+	"name": "project1",
+	"description": "Role for sample app.",
+	"chef_type": "role",
+	"json_class": "Chef::Role",
+	"default_attributes": {},
+	"override_attributes": {
+		"apache": {
+			"user": "vagrant",
+			"group": "vagrant"
+		},
+		"mysql": {
+			"server_root_password": "root"
+		},
+		"temp": {
+			"bashrc": {
+				"envs": {
+					"APP_ENV": "test",
+					"APP_PLATFORM": "vagrant-vm"
+				},
+				"paths": [
+					"/home/vagrant/bin",
+					"/home/vagrant/app/bin"
+				]
+			},
+			"web_apps": [{
+					"server_name": "localhost",
+					"server_aliases": ["*.localhost"],
+					"docroot": "/home/vagrant/app",
+					"app_environment": "test",
+					"app_platform": "vagrant-vm",
+					"aliases" : []
+			},{
+					"server_name": "dev.vm",
+					"server_aliases": ["*.dev.vm"],
+					"docroot": "/home/vagrant/app",
+					"app_environment": "test",
+					"app_platform": "vagrant-vm-tests",
+					"aliases" : []
+			}
+			],
+			"mysql": {
+				"databases": ["temp"],
+				"users": [{
+					"username": "'vagrant'@'%'",
+					"password": ""
+				}]
+			},
+			"etc_hosts": [{
+				"ip": "127.0.0.1",
+				"domain": "dev.vm"
+			}]
+		}
+	},
+	"run_list": [
+		"recipe[apt]",
+		"role[server-php-web]",
+		"role[server-mysql]",
+		"recipe[kranthi]",
+		"recipe[graphite]",
+		"recipe[statsd]",
+		"recipe[vim]",
+		"recipe[yum]"
+	]
+}

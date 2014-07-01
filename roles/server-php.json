@@ -1,0 +1,17 @@
+{
+	"name": "server-php",
+	"description": "Role for servers running php apps (web and cli).",
+	"chef_type": "role",
+	"json_class": "Chef::Role",
+	"default_attributes": {},
+	"override_attributes": {},
+	"run_list": [
+		"recipe[php]",
+		"recipe[php::module_apc]",
+		"recipe[php::module_curl]",
+		"recipe[php::module_gd]",
+		"recipe[php::module_ldap]",
+		"recipe[php::module_mysql]",
+		"recipe[php::module_sqlite3]"
+	]
+}

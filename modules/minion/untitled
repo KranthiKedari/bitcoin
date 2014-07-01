@@ -1,0 +1,41 @@
+
+
+AB Testing Tools:
+
+
+AB Testing schema:
+
+
+Expressions JSON:
+
+{
+    "exp1" : "[[LogEvent.type]=='ui']",
+    "exp2" : "[[LogEvent.ctx.type]=='ui']"
+}
+
+Two type of format:
+
+1) Direct property of the Event object:
+
+Only two fields exists in the expression paramater text
+
+e.g:  LogEvent.type implies the type property on the LogEvent object.
+
+2) A key on the context object of the event object
+
+Three fields exists in the expression paramater text
+
+e.g: LogEvent.ctx.type
+
+implies the value represented by the key type in the ctx ( Dictionary ) property of the LogEvent object
+
+
+
+Tests Json:
+
+{
+    "Test1" : [
+        "{}
+    ],
+    "Test1" : [],
+}

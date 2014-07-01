@@ -1,0 +1,11 @@
+{
+	"name": "server-mysql",
+	"description": "Role for MySQL servers.",
+	"chef_type": "role",
+	"json_class": "Chef::Role",
+	"default_attributes": {},
+	"override_attributes": {},
+	"run_list": [
+        "recipe[mysql::server]"
+	]
+}
