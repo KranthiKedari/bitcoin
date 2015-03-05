@@ -33,7 +33,7 @@ file "/opt/graphite/conf/graphTemplates.conf" do
 end
 
 python_pip "django" do
-  version "1.3"
+  version "1.4.5"
 end
 
 python_pip "django-tagging" do

@@ -18,8 +18,7 @@ default['graphite']['webapp']['local_settings'] = { "SECRET_KEY" => "'KRANTHI_KE
         'PORT': ''
       }
   }",
-  "DATABASE_ENGINE" => "'django.db.backends.sqlite3'",
-  "DATABASE_NAME" => "'/opt/graphite/storage/graphite.db'",
+ 
 }
 
 default['graphite']['webapp']['dashboard'] = {

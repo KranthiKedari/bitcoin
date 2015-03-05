@@ -1,0 +1,53 @@
+---
+driver:
+  name: vagrant
+  require_chef_omnibus: true
+  customize:
+    memory: 512
+
+provisioner:
+  name: chef_zero
+
+platforms:
+- name: ubuntu-14.04
+  run_list:
+  - recipe[apt]
+- name: centos-6.5
+  run_list:
+  - recipe[yum-epel]
+
+suites:
+- name: default
+  run_list:
+  - recipe[collectd]
+  - recipe[collectd::attribute_driven]
+  attributes:
+    collectd:
+      version: 5.4.1
+      url: https://s3.amazonaws.com/collectd-5.4.1/collectd-5.4.1.tar.gz
+      checksum: 853680936893df00bfc2be58f61ab9181fecb1cf45fc5cddcb7d25da98855f65
+      graphite_ipaddress: localhost
+      plugins:
+        write_graphite:
+          config: { Prefix: "collectd." }
+        syslog:
+          config: { LogLevel: "Info" }
+        disk: { }
+        swap: { }
+        memory: { }
+        cpu: { }
+        interface:
+          config: { Interface: "lo", IgnoreSelected: true }
+        df:
+          config:
+            ReportReserved: false
+            FSType: [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ]
+            IgnoreSelected: true
+      python_plugins:
+        rabbitmq:
+          typesdb: "/mnt/pro..."
+          config:
+            ModulePath: "/mnt/projects/collectd-rabbitmq/"
+            Import: "rabbitmq"
+          module_config:
+            username: "blaj"

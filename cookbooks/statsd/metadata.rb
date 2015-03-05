@@ -1,3 +1,4 @@
+name             "statsd"
 maintainer       "Jon Wood"
 maintainer_email "jon@blankpad.net"
 license          "Apache 2.0"
